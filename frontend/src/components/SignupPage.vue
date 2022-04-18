@@ -7,7 +7,7 @@
             <v-text-field label="PASSWORD" :rules="pw_rules" v-model='password' hide-details="auto"></v-text-field>    
             <v-text-field label="이름" :rules="name_rules" v-model='name' hide-details="auto"></v-text-field>    
             <v-text-field label="닉네임" :rules="nickname_rules" v-model='nickname' hide-details="auto"></v-text-field>    
-            <v-btn>회원가입</v-btn>
+            <v-btn @click="signup">회원가입</v-btn>
         </div>
 
     </section>
@@ -48,10 +48,10 @@ export default ({
 
             console.log('회원가입 시도')
             vm.$http.post("/api/users/signup", {
-                id : vm.id,
-                password : vm.password,
-                name : vm.name,
-                nickname : vm.nickname,
+                user_id : vm.id,
+                user_password : vm.password,
+                user_name : vm.name,
+                user_nickname : vm.nickname,
             })
             .then(
                 (res) => {
@@ -59,7 +59,7 @@ export default ({
                     vm.$router.path("/login");
                 },
                 (err) => {
-                    alert('로그인 실패! : ' + err.toString);
+                    alert('로그인 실패! : ' + err);
                 }
             )
             .catch((err) => {
