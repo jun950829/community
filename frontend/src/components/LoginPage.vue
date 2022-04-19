@@ -7,7 +7,7 @@
             <v-text-field label="PASSWORD" :rules="pw_rules" v-model='password' hide-details="auto"></v-text-field>    
             <div class="loginBtns">
                 <v-btn @click="gotoSignup()">회원가입</v-btn>
-                <v-btn>로그인</v-btn>
+                <v-btn @click="login()">로그인</v-btn>
             </div>
         </div>
 
@@ -37,6 +37,28 @@ export default ({
         // debugger //eslint-disable-line no-debugger
         const vm = this;
         vm.$router.push('/signup')
+      },
+
+      login() {
+        const vm = this;
+          
+        vm.$http.post("/api/users/inquire", {
+            gb : 'login',
+            user_id : vm.id,
+            user_password : vm.password,
+        })
+        .then(
+            (res) => {
+                // console.log(res.data);
+                alert('로그인 성공 : ' + res.data.user_data.user_id);
+            },
+            (err) => {
+                alert('로그인 실패! : ' + err);
+            }
+        )
+        .catch((err) => {
+            alert(err);
+        })
       }
     }
 })

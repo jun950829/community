@@ -1,14 +1,14 @@
 // var express = require('express');
 // var router = express.Router();
 
-var {Client} = require('pg');
+var mysql = require('mysql');
 
-var db = new Client({
-    user : 'cheonseungjun',
+var db = mysql.createConnection({
+    user : 'root',
     host : 'localhost',
-    database : 'postgres',
-    password: 1234,
-    port : 5432
+    database : 'community',
+    password: 'cjstmdwns',
+    port : 3306
 })
 
 module.exports = db;

@@ -46,8 +46,8 @@ export default ({
         signup () {
             const vm = this;
 
-            console.log('회원가입 시도')
-            vm.$http.post("/api/users/signup", {
+            vm.$http.post("/api/users/inquire", {
+                gb : 'signup',
                 user_id : vm.id,
                 user_password : vm.password,
                 user_name : vm.name,
@@ -55,8 +55,8 @@ export default ({
             })
             .then(
                 (res) => {
-                    alert(res.data.message);
-                    vm.$router.path("/login");
+                    alert(res.data);
+                    vm.$router.push("/login");
                 },
                 (err) => {
                     alert('로그인 실패! : ' + err);
