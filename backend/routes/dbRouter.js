@@ -48,7 +48,7 @@ dbRouter.post('/users/inquire', function(req, res, next) {
             if(loginData.user_id === data[0].user_id && loginData.user_password === data[0].user_password) {
                 
                 res.status(200).json({
-                    status: 'succes',
+                    status: 'success',
                     user_data : {
                         user_id : data[0].user_id,
                         user_password : data[0].user_password,
