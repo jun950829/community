@@ -52,7 +52,7 @@ export default ({
                 // console.log(res.data);
                 alert('로그인 성공 : ' + res.data.user_data.user_id);
 
-                vm.$store.commit('setUserId', vm.id);
+                vm.$store.commit('setUserId', res.data.user_data.user_id);
 
                 vm.$router.push('/');
             },

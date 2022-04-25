@@ -10,9 +10,15 @@ var store = new Vuex.Store({
     },
 
     mutations : {
-        setUserId(user_id) {
+        setUserId(state, user_id) {
             state.user = user_id;
         },
+    },
+
+    actions : {
+        setUserId(context, user_id) {
+            context.commit('setUserId', user_id);
+        }
     }
 });
 
