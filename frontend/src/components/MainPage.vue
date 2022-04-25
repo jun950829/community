@@ -1,6 +1,6 @@
 <template>
   <v-container>
-    메인페이지 입니다.
+    
   </v-container>
 </template>
 

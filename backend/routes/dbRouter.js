@@ -11,7 +11,7 @@ dbRouter.post('/users/inquire', function(req, res, next) {
 
     if(gb === 'signup') {
 
-        var signupData  = [
+        var signupData  = [ 
             req.body.user_id,
             req.body.user_password,
             req.body.user_name,
@@ -36,7 +36,6 @@ dbRouter.post('/users/inquire', function(req, res, next) {
             user_id : req.body.user_id,
             user_password : req.body.user_password,
         };  
-
 
         db.query("SELECT * FROM user_data where user_id = ?", [loginData.user_id], function(err, data) {
 
