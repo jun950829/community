@@ -59,6 +59,31 @@ dbRouter.post('/users/inquire', function(req, res, next) {
         });
     }
 
+    if(gb === 'inquire') {
+        var userList = [];
+
+        db.query("SELECT * FROM user_data", function(err, data) {
+            if(err) {
+                console.log(err);
+                throw err;
+            }
+
+            else {
+
+                for (var element of data) {
+                    userList.push(element)
+                }
+                console.log(userList);
+
+                res.status(200).json({
+                    status: 'success',
+                    userList : data,
+                })
+            }
+
+        })
+    }
+
 })
 
 
