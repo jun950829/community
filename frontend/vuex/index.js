@@ -6,21 +6,21 @@ Vue.use(Vuex);
 
 var store = new Vuex.Store({
     state : {
-        user : null,
+        g_userID : null,
     },
 
     getters : {
         getUser : (state) => {
-            if(state.user !== null)
-                return state.user;
+            if(state.g_userID !== null)
+                return state.g_userID;
             else 
                 return null;
-        },
+        }
     },
 
     mutations : {
         setUserId(state, user_id) {
-            state.user = user_id;
+            state.g_userID = user_id;
         },
     },
 
