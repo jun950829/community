@@ -9,6 +9,15 @@ var store = new Vuex.Store({
         user : null,
     },
 
+    getters : {
+        getUser : (state) => {
+            if(state.user !== null)
+                return state.user;
+            else 
+                return null;
+        },
+    },
+
     mutations : {
         setUserId(state, user_id) {
             state.user = user_id;

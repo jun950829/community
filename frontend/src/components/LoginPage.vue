@@ -41,6 +41,16 @@ export default ({
 
       login() {
         const vm = this;
+
+        if(vm.id.length == 0) {
+            alert('id를 입력해주세요');
+            return;
+        }
+
+        if(vm.password.length == 0) {
+            alert('password를 입력해주세요');
+            return;
+        }
           
         vm.$http.post("/api/users/inquire", {
             gb : 'login',
