@@ -84,13 +84,15 @@ import tasktable from './TaskTable.vue';
       const vm = this;
 
       //비로그인시 로그인 페이지로
-      if(vm.$store.state.user === null) {
+      if(vm.$store.state.g_userID === null) {
         vm.$router.push('/login');
       }
 
       else {
         // vm.$http.get()
-        vm.$http.get("/api/user/data", {
+        if(vm.$store.getters.getUser !== null) {
+          // console.log(vm.$store.getters.getUser);
+          vm.$http.post("/api/user/data", {
             user_id : vm.$store.getters.getUser,
         })
         .then(
@@ -103,7 +105,9 @@ import tasktable from './TaskTable.vue';
         )
         .catch((err) => {
             alert(err);
-        })
+          })
+        }
+        
       }
       // vm.user_id = vm.$store.state.user
 

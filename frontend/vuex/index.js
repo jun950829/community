@@ -1,6 +1,5 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import { state } from '../../backend/routes/db';
 
 Vue.use(Vuex);
 

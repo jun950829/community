@@ -38,7 +38,7 @@ export default {
         .then(
             (res) => {
                 vm.userList = res.data.userList;
-                console.log(vm.userList);   
+                // console.log(vm.userList);   
 
             },
             (err) => {

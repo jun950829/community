@@ -97,7 +97,7 @@ dbRouter.post('/users/inquire', function(req, res, next) {
 })
 
 
-dbRouter.get('/user/data', function(req, res){
+dbRouter.post('/user/data', function(req, res){
 
     var userData  = {
         user_id : req.body.user_id,
