@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
+    <img alt="Vue logo" :src="logo" />
     kdsfhaskjdhf
   </div>
 </template>
@@ -10,5 +10,8 @@ import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "Home",
+  data: () => ({
+    logo: require("../assets/logo.png"),
+  }),
 });
 </script>
