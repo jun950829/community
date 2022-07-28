@@ -11,7 +11,9 @@ module.exports = {
     "@vue/prettier/@typescript-eslint",
   ],
   parserOptions: {
-    ecmaVersion: 2020,
+    project : "./tsconfig.json",
+    ecmaVersion : 2020,
+    sourceType : "module"
   },
   rules: {
     "no-console": process.env.NODE_ENV === "production" ? "warn" : "off",
