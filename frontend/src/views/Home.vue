@@ -2,6 +2,8 @@
   <div class="home">
     <img alt="Vue logo" :src="logo" />
     <div>{{ state.isLogin }}</div>
+
+    <div class="homeArea">메인화면</div>
   </div>
 </template>
 

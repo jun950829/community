@@ -4,6 +4,10 @@
   </div>
 </template>
 
+<script setup>
+import "./assets/style/main.scss";
+</script>
+
 <style lang="scss">
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
