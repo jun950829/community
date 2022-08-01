@@ -1,14 +1,14 @@
 <template>
   <div class="home">
     <img alt="Vue logo" :src="logo" />
-    <div>{{ isLogin }}</div>
+    <div>{{ state.isLogin }}</div>
   </div>
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue'
-
-let isLogin = ref(false);
+const state = reactive({
+  isLogin: false,
+});
 
 interface httpRespond {
   status: string;
@@ -43,19 +43,17 @@ async function checkLogin(): Promise<httpRespond> {
 
     if (userData.user_data.user_id == "test4") {
       console.log("true");
-      isLogin = true;
+      state.isLogin = true;
       return;
     }
   } catch (e) {
     console.log(e);
-
-    return;
   }
 })();
 </script>
 
 <script lang="ts">
-import { defineComponent } from "vue";
+import { defineComponent, reactive } from "vue";
 
 export default defineComponent({
   name: "Home",
