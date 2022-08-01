@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" :src="logo" />
+    <img alt="Vue logo" :src="state.logo" />
     <div>{{ state.isLogin }}</div>
 
     <div class="homeArea">메인화면</div>
@@ -8,8 +8,15 @@
 </template>
 
 <script setup lang="ts">
+import { useStore } from "vuex";
+import { useRouter } from "vue-router";
+
+const router = useRouter();
+const store = useStore();
+
 const state = reactive({
   isLogin: false,
+  logo: require("../assets/logo.png"),
 });
 
 interface httpRespond {
@@ -23,6 +30,25 @@ interface userDataForm {
   user_name: string;
   user_nickname: string;
 }
+console.log(store.state.userId);
+
+if (store.state.userId === null) {
+  router.push({ path: "/login" });
+}
+
+(async () => {
+  try {
+    let userData = await checkLogin();
+
+    if (userData.user_data.user_id == "") {
+      store.commit("setUserId", userData.user_data.user_id);
+      state.isLogin = true;
+      return;
+    }
+  } catch (e) {
+    console.log(e);
+  }
+})();
 
 async function checkLogin(): Promise<httpRespond> {
   const response = await window.fetch("/api/user/data", {
@@ -38,20 +64,6 @@ async function checkLogin(): Promise<httpRespond> {
   const result = await response.json();
   return result;
 }
-
-(async () => {
-  try {
-    let userData = await checkLogin();
-
-    if (userData.user_data.user_id == "test4") {
-      console.log("true");
-      state.isLogin = true;
-      return;
-    }
-  } catch (e) {
-    console.log(e);
-  }
-})();
 </script>
 
 <script lang="ts">
@@ -59,8 +71,5 @@ import { defineComponent, reactive } from "vue";
 
 export default defineComponent({
   name: "Home",
-  data: () => ({
-    logo: require("../assets/logo.png"),
-  }),
 });
 </script>
