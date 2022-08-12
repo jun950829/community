@@ -21,7 +21,10 @@ dbRouter.post('/users/inquire', function(req, res, next) {
         db.query("INSERT INTO user_data (user_id, user_password, user_name, user_nickname) VALUES (?,?,?,?);", signupData, function(err, result) {
             if(err) {
                 console.log(err);
-                return;
+                res.status(500).json({
+                    status: 'fail',
+                    msg : '서버오류 또는 아이디를 확인하세요',
+                })
                 // throw err;
             } 
 
@@ -43,26 +46,38 @@ dbRouter.post('/users/inquire', function(req, res, next) {
 
             if(err) {
                 console.log(err);
-                return;
+                res.status(500).json({
+                    status: 'fail',
+                    msg : '서버오류 또는 아이디를 확인하세요',
+                })
                 // throw err;
             } 
 
-            //로그인 성공
-            if(loginData.user_id === data[0].user_id && loginData.user_password === data[0].user_password) {
+            //빈쿼리 조회 시 null 체크
+            if(data.length > 0) {
+                //로그인 성공
+                if(loginData.user_id === data[0].user_id && loginData.user_password === data[0].user_password) {
                 
-                res.status(200).json({
-                    status: 'success',
-                    user_data : {
-                        user_id : data[0].user_id,
-                        user_password : data[0].user_password,
-                    },
-                });
-            } 
-            //로그인 실패
-            else {
+                    res.status(200).json({
+                        status: 'success',
+                        user_data : {
+                            user_id : data[0].user_id,
+                            user_password : data[0].user_password,
+                        },
+                    });
+                } 
+                //로그인 실패
+                else {
+                    res.status(200).json({
+                        status: 'fail',
+                        msg : '로그인 실패. 아이디와 비밀번호를 확인해주세요',
+                    })
+                }
+            } else {
+                //로그인 실패
                 res.status(200).json({
                     status: 'fail',
-                    msg : '로그인 실패. 아이디와 비밀번호를 확인해주세요',
+                    msg : '아이디가 조회되지 않습니다.',
                 })
             }
         });
@@ -73,10 +88,12 @@ dbRouter.post('/users/inquire', function(req, res, next) {
 
         db.query("SELECT * FROM user_data", function(err, data) {
             if(err) {
-                console.log(err);
-                return;
+                res.status(500).json({
+                    status: 'fail',
+                    msg : '서버오류 또는 아이디를 확인하세요',
+                })
                 // throw err;
-            }
+            } 
 
             else {
 
@@ -94,6 +111,8 @@ dbRouter.post('/users/inquire', function(req, res, next) {
         })
     }
 
+
+
 })
 
 
@@ -103,13 +122,15 @@ dbRouter.post('/user/data', function(req, res){
         user_id : req.body.user_id,
     };  
 
-    console.log('db'+userData.user_id);
     db.query("SELECT * FROM user_data where user_id = ?",[userData.user_id],  function(err, data){
         if(err) {
             console.log(err);
-            return;
+            res.status(500).json({
+                status: 'fail',
+                msg : '서버오류 또는 아이디를 확인하세요',
+            })
             // throw err;
-        }
+        } 
 
         if(res.statusCode === 200) {
 
