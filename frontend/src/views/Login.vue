@@ -1,34 +1,40 @@
 <template>
-  <div class="loginArea">
-    <h1>로그인</h1>
-    <div class="input-box">
-      <input
-        id="username"
-        type="text"
-        name="username"
-        placeholder="아이디"
-        v-model="state.id"
-        @input="$emit('update:state.id', $event.target.value)"
-      />
-      <label for="username">아이디</label>
-    </div>
-    <div class="input-box">
-      <input
-        id="password"
-        type="password"
-        name="password"
-        placeholder="비밀번호"
-        v-model="state.password"
-        @input="$emit('update:state.id', $event.target.value)"
-      />
-      <label for="password">비밀번호</label>
-    </div>
+  <section id="login">
+    <div class="loginArea">
+      <h1>로그인</h1>
+      <div class="input-box">
+        <input
+          id="username"
+          type="text"
+          name="username"
+          placeholder="아이디"
+          v-model="state.id"
+          @input="$emit('update:state.id', $event.target.value)"
+        />
+        <label for="username">아이디</label>
+      </div>
+      <div class="input-box">
+        <input
+          id="password"
+          type="password"
+          name="password"
+          placeholder="비밀번호"
+          v-model="state.password"
+          @input="$emit('update:state.id', $event.target.value)"
+        />
+        <label for="password">비밀번호</label>
+      </div>
 
-    <div>{{ state.result }}</div>
+      <div>{{ state.result }}</div>
 
-    <div class="loginBtn" @click="doLogin()">로그인</div>
-    <!-- <div id="forgot">비밀번호 찾기</div> -->
-  </div>
+      <div class="btns">
+        <div class="signupBtn" @click="goSignupPage()">회원가입</div>
+        <div class="loginBtn" @click="doLogin()">로그인</div>  
+      </div>
+      
+      <!-- <div id="forgot">비밀번호 찾기</div> -->
+    </div>
+  </section>
 </template>
 
 <script setup lang="ts">
@@ -62,7 +68,7 @@ interface userData {
 }
 
 async function login(): Promise<userData> {
-  const response = await window.fetch("/api/users/inquire", {
+  const response = await window.fetch("/api/user/inquire", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -88,6 +94,12 @@ async function doLogin() {
     router.push({ path: "/" });
   }
 }
+
+
+function goSignupPage() {
+  router.push({ path : '/signup' })
+}
+
 </script>
 
 <script lang="ts">

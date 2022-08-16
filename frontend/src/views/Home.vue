@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <section id="home">
     <img alt="Vue logo" :src="state.logo" />
     <div>{{ state.isLogin }}</div>
 
@@ -7,7 +7,7 @@
 
     <div class="homeArea">메인화면</div>
     1
-  </div>
+  </section>
 </template>
 
 <script setup lang="ts">
