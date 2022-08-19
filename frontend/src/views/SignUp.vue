@@ -59,10 +59,9 @@
                         type="text"
                         name="username"
                         placeholder="이름"
-                        v-model="state.username"
+                        :value="state.username"
                         @input="checkName"
                     />
-                    <!-- @input="$emit('update:state.username', $event.target.value)" -->
                     <label for="username">이름</label>
                 </div>
                 <div>
@@ -108,7 +107,7 @@
 </template>
 
 <script setup lang="ts">
-import { useRouter } from "vue-router";
+// import { useRouter } from "vue-router";
 
 const state = reactive({
     id : "",
@@ -141,11 +140,16 @@ function checkPassword(data) {
 }
 
 function checkName(data) {
-        let id = data.data;
-        console.log(data);
-    if((/[ㄱ-ㅎㅏ-ㅣ가-힣\\b]/g).test(id)) {
+    state.username = data.target.value;
+    if(state.username == '') {
+        return;
+    }
+    else if((/[\b]/g).test(state.username)) {
+        return ;
+    } else if((/[ㄱ-ㅎㅏ-ㅣ가-힣]/g).test(state.username)) {
         return ;
     } else {
+
         alert('한글만 가능합니다.');
         return;
     } 

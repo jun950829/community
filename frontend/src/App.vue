@@ -5,7 +5,7 @@
 </template>
 
 <script setup>
-import "./assets/style/main.scss";
+  import "./assets/style/main.scss";
 </script>
 
 <style lang="scss">
