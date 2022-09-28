@@ -68,7 +68,7 @@ interface userData {
 }
 
 async function login(): Promise<userData> {
-  const response = await window.fetch("/api/user/inquire", {
+  const response = await window.fetch("/api/users/inquire", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

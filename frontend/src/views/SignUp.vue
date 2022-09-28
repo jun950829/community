@@ -124,6 +124,7 @@ function checkId(data) {
     if((/[a-zA-Z0-9]/g).test(id)) {
         return ;
     } else {
+        state.id = state.id.replace(/[^a-zA-Z0-9]/g, '');
         alert('영문자, 숫자만 가능합니다.');
         return;
     }    
